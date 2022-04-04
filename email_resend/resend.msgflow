@@ -15,7 +15,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="388,217" computeExpression="esql://routine/#ResendCompute.Main">
         <translation xmi:type="utility:ConstantString" string="Compute"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="599,382">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="626,362" filePath="C:\IBM\ACE\workspace\log\trace_email_resend.txt" pattern="Trace after email request on error $(CURRENT_TIMESTAMP)&#xD;&#xA;$(Root)&#xD;&#xA;$(ExeptionList)&#xD;&#xA;$(LocalEnviropment)&#xD;&#xA;$(Body)">
         <translation xmi:type="utility:ConstantString" string="Trace"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
