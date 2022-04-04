@@ -7,7 +7,6 @@ CREATE FUNCTION Main() RETURNS BOOLEAN
 		SET OutputRoot.EmailOutputHeader.To = 'admin@mycompany.com';
 	--	SET OutputRoot.EmailOutputHeader.Cc = 'admin@mycompany.com';
 	--	SET OutputRoot.EmailOutputHeader.Bcc = 'tes@mycompany.com';
-
 		-- Add sender information to EmailOutputHeader
 		SET OutputRoot.EmailOutputHeader.From = 'admin@mycompany.com';
 		
