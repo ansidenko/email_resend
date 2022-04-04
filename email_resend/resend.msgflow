@@ -9,7 +9,7 @@
       <nodes xmi:type="ComIbmEmailInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="103,218" emailServer="imaps://imap.mycompany.com:993" securityIdentity="imap_user">
         <translation xmi:type="utility:ConstantString" string="Email Input"/>
       </nodes>
-      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="695,218" smtpServer="smtp://smtp.mycompany.com:25" securityIdentity="smtp_user">
+      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="621,217" smtpServer="smtp://smtp.mycompany.com:25" securityIdentity="smtp_user">
         <translation xmi:type="utility:ConstantString" string="Email Output"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="388,217" computeExpression="esql://routine/#ResendCompute.Main">
