@@ -1,0 +1,58 @@
+CREATE COMPUTE MODULE ResendCompute
+CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		
+	-- Add recipient information to the EmailOutputHeader
+		SET OutputRoot.EmailOutputHeader.To = 'admin@mycompany.com';
+	--	SET OutputRoot.EmailOutputHeader.Cc = 'admin@mycompany.com';
+	--	SET OutputRoot.EmailOutputHeader.Bcc = 'tes@mycompany.com';
+
+		-- Add sender information to EmailOutputHeader
+		SET OutputRoot.EmailOutputHeader.From = 'admin@mycompany.com';
+		
+		SET OutputRoot.EmailOutputHeader."Reply-To" = 'admin@mycompany.com';
+
+		-- Add subject to EmailOutputHeader
+--	SET OutputRoot.EmailOutputHeader.Subject = 'Replaced by ESQL compute node.';
+SET OutputRoot.EmailOutputHeader.Subject = InputRoot.EmailInputHeader.Subject;
+	-- Add all Attachments
+	SET OutputRoot.MIME = InputRoot.MIME;
+	-- Add SMTP server information to the LocalEnvironment
+	--	SET OutputLocalEnvironment.Destination.Email.SMTPServer ='localhost:25>';
+	-- Create a new message body, which will be sent as the main text of the email.
+	--	SET OutputRoot.BLOB.BLOB = CAST('This is the new text for the body of the email.' AS BLOB CCSID 1208);  
+
+--	SET OutputRoot.BLOB.BLOB = CAST(InputRoot.EmailData.Body AS BLOB CCSID 1208); 
+--	SET OutputRoot.BLOB.BLOB = CAST(InputRoot.XMLNSC.Email.Text AS BLOB CCSID 1208 );
+
+	
+--	SET OutputLocalEnvironment.Destination.Email.Attachment.Content = InputRoot.XMLNSC.Email.Attachment;
+--    SET OutputLocalEnvironment.Destination.Email.Attachment.Content = CAST(BASE64DECODE(InputRoot.XMLNSC.Email.Attachment) AS BLOB CCSID 1208);     
+
+--    SET OutputLocalEnvironment.Destination.Email.Attachment.ContentType = 'multipart/related;boundary=myBoundary';
+--    SET OutputLocalEnvironment.Destination.Email.Attachment.ContentName = InputRoot.XMLNSC.Email.AttachmentName;
+--    SET OutputLocalEnvironment.Destination.Email.Attachment.ContentEncoding = 'base64';
+	
+--	SET OutputRoot.BLOB.BLOB = CAST(InputRoot.XMLNS.test.content AS BLOB CCSID 1208);   
+ --SET OutputRoot.BLOB.BLOB = InputRoot.BLOB.BLOB;
+         
+--CALL CopyEntireMessage();
+
+		RETURN TRUE; 
+	END;
+	
+		CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
